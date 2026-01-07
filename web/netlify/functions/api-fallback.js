@@ -10,6 +10,16 @@ exports.handler = async (req, res) => {
     return;
   }
 
+  // Parse request body for POST requests
+  let body = {};
+  if (req.method === 'POST') {
+    try {
+      body = JSON.parse(req.body);
+    } catch (e) {
+      console.error('Error parsing body:', e);
+    }
+  }
+
   const fallbackResponses = {
     'study-planner': `# Study Schedule
 
@@ -75,8 +85,21 @@ Choose a service from the sidebar to get started!
 *Note: Some AI features may be limited in static deployment.*`
   };
 
-  const path = req.url.split('/').pop();
-  const response = fallbackResponses[path] || fallbackResponses['default'];
+  // Get the path from the URL
+  const urlParts = req.url.split('/');
+  const path = urlParts[urlParts.length - 1] || 'default';
   
+  // Handle specific paths
+  if (body.prompt && path === 'help-desk') {
+    // Generate contextual response based on the prompt
+    const prompt = body.prompt.toLowerCase();
+    if (prompt.includes('study') || prompt.includes('subjects') || prompt.includes('schedule')) {
+      return res.status(200).json({ text: fallbackResponses['study-planner'] });
+    } else if (prompt.includes('lost') || prompt.includes('found')) {
+      return res.status(200).json({ text: fallbackResponses['lost-found'] });
+    }
+  }
+  
+  const response = fallbackResponses[path] || fallbackResponses['default'];
   res.status(200).json({ text: response });
 };
