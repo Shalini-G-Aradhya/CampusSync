@@ -1,0 +1,13 @@
+[build]
+  publish = "out"
+  command = "npm run build"
+
+[[redirects]]
+  from = "/api/ai"
+  to = "/.netlify/functions/api-fallback"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
