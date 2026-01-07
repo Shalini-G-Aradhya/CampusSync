@@ -6,9 +6,7 @@ const nextConfig = {
     unoptimized: true
   },
   assetPrefix: process.env.NODE_ENV === 'production' ? '' : '',
-  basePath: process.env.NODE_ENV === 'production' ? '' : '',
-  // Generate single HTML file with hash-based routing
-  distDir: 'out'
+  basePath: process.env.NODE_ENV === 'production' ? '' : ''
 }
 
 module.exports = nextConfig
