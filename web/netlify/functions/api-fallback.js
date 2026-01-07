@@ -1,5 +1,15 @@
 // Fallback AI responses for static deployment
 exports.handler = async (req, res) => {
+  // Enable CORS for all requests
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
   const fallbackResponses = {
     'study-planner': `# Study Schedule
 
