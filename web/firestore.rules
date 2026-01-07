@@ -1,0 +1,60 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Help functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isSignedIn() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "admin";
+    }
+    
+    function isFaculty() {
+      return isSignedIn() && (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "faculty" || isAdmin());
+    }
+
+    // Users can read and write their own profile
+    match /users/{userId} {
+      allow read, write: if isSignedIn() && request.auth.uid == userId;
+    }
+    
+    // Notices: Everyone can read, only Admin/Faculty can write
+    match /notices/{noticeId} {
+      allow read: if true;
+      allow create: if isFaculty();
+      allow update, delete: if isAdmin();
+    }
+
+    // Lost Items: Everyone can read, Authenticated users can write
+    match /lost-items/{itemId} {
+      allow read: if true;
+      allow create: if isSignedIn();
+      allow update, delete: if isAdmin() || (isSignedIn() && resource.data.authorId == request.auth.uid);
+    }
+    
+    // Help Desk Tickets: Faculty/Admin see all, Students see own
+    match /tickets/{ticketId} {
+      allow read: if isFaculty() || (isSignedIn() && resource.data.userId == request.auth.uid);
+      allow create: if isSignedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    // Issues: Authenticated users can read/create/update, admins can delete
+    match /issues/{issueId} {
+      allow read: if isFaculty() || (isSignedIn() && resource.data.reportedBy == request.auth.uid);
+      allow create: if isSignedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    // Claims: Authenticated users can create claims
+    match /claims/{claimId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
