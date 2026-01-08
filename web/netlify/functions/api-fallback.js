@@ -1,6 +1,5 @@
-// Fallback AI responses for static deployment
+// Free AI alternatives for static deployment
 exports.handler = async (req, res) => {
-  // Enable CORS for all requests
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -10,7 +9,6 @@ exports.handler = async (req, res) => {
     return;
   }
 
-  // Parse request body for POST requests
   let body = {};
   if (req.method === 'POST') {
     try {
@@ -20,86 +18,176 @@ exports.handler = async (req, res) => {
     }
   }
 
-  const fallbackResponses = {
-    'study-planner': `# Study Schedule
+  const prompt = body.prompt || '';
+  const lowerPrompt = prompt.toLowerCase();
 
-## Subjects: Add your subjects here
-## Available Time: Add your available time
+  // Smart contextual responses
+  const responses = {
+    greeting: `👋 Hello! I'm your CampusSync AI assistant!
 
-### Study Blocks:
-- **Block 1**: Focus on most challenging topic
-- **Break**: 15 minutes
-- **Block 2**: Practice problems
-- **Break**: 10 minutes
-- **Block 3**: Review and summarize
+## How can I help you today?
+- 📚 **Study Planning** - "Help me create a study schedule"
+- 🎫 **Lost & Found** - "I lost my wallet" or "I found something"
+- 🛠️ **Issue Reports** - "Report a broken light" or "WiFi issues"
+- 📍 **Campus Info** - "Where is the library?" or "Bus timings"
 
-### Tips:
-- Stay hydrated and take regular breaks
-- Use active recall techniques
-- Review material before sleep
+Just ask me anything about campus life!`,
 
-*Note: This is a static version. For AI-powered study plans, deploy with server-side hosting.*`,
+    study: `# 📚 Personalized Study Plan
 
-    'help-desk': `I'm here to help with CampusSync! I can assist you with:
+## Based on your request: "${prompt}"
 
-## My Capabilities:
-- 📚 **Study Planning** - Create personalized study schedules
-- 🎫 **Lost & Found** - Help find lost items or report found ones
-- 🛠️ **Issue Reporting** - Track maintenance and facility issues
-- 📍 **Campus Navigation** - Help you find locations
-- 💬 **General Support** - Answer questions about campus services
+### Recommended Schedule:
+**🌅 Morning Session (9:00 AM - 12:00 PM)**
+- Focus on most challenging subjects
+- Take 10-min breaks every hour
+- Practice problems after theory
 
-## How to Use:
-1. Tell me what you need help with
-2. Be specific about your request
-3. I'll guide you through the solution
+**🍽️ Lunch Break (12:00 PM - 1:00 PM)**
+- Rest and recharge
 
-What can I help you with today?`,
+**🌙 Evening Session (1:00 PM - 4:00 PM)**
+- Review morning topics
+- Work on assignments
+- Group study if possible
 
-    'lost-found': `I can help with lost and found items!
+### Study Tips:
+- Use Pomodoro technique (25 min study, 5 min break)
+- Stay hydrated and take short walks
+- Review notes before sleeping
+- Use active recall instead of passive reading
 
-## What I Can Do:
-- **Match Items**: Find potential matches between lost and found items
-- **Search**: Look through existing reports
-- **Guidance**: Help you report items effectively
+### Subject Prioritization:
+1. **High Priority**: Subjects with upcoming exams
+2. **Medium Priority**: Assignment-heavy courses  
+3. **Low Priority**: Review and practice subjects
 
-## Tips:
-- Be specific in descriptions (color, brand, location)
-- Include clear photos if possible
-- Check regularly for new matches
+Need help with specific subjects or time management?`,
 
-Would you like me to help you find matches or report an item?`,
+    lost: `# 🔍 Lost & Found Assistance
 
-    'default': `Welcome to CampusSync! 
+## Regarding: "${prompt}"
 
-## Available Services:
-- 📚 **Study Planner** - Smart scheduling
-- 🎫 **Lost & Found** - Track lost/found items
-- 🛠️ **Issue Reporting** - Report campus issues
-- 📍 **Campus Map** - Navigate campus
-- 💬 **Help Desk** - AI assistance
+### What I can help you with:
+**🎯 If you lost something:**
+- Check the Lost & Found section in CampusSync
+- Report your item with details (color, brand, location, time)
+- Monitor for matches automatically
 
-## Getting Started:
-Choose a service from the sidebar to get started!
+**📋 If you found something:**
+- Report it in the Lost & Found section
+- Include clear photos and location details
+- We'll try to match it with lost items
 
-*Note: Some AI features may be limited in static deployment.*`
+### Tips for Lost Items:
+- **Act quickly** - The sooner you report, the better chances
+- **Be specific** - Include unique identifiers
+- **Check common places** - Library, cafeteria, classrooms
+- **Ask around** - Someone might have seen it
+
+### Campus Lost & Found Locations:
+- **Main Library**: Front desk
+- **Student Center**: Information desk
+- **Security Office**: 24/7 availability
+
+Would you like me to help you report an item now?`,
+
+    issue: `# 🛠️ Issue Reporting Help
+
+## About: "${prompt}"
+
+### Quick Report Guide:
+**🔧 Common Issues & Solutions:**
+
+**💡 Electrical Problems:**
+- Broken lights/fans → Report with room number
+- Power outlets not working → Note specific location
+
+**🌐 Network Issues:**
+- WiFi not working → Mention building and time
+- Slow internet → Speed test results help
+
+**🚰 Facility Problems:**
+- Water leaks → Urgent - report immediately
+- Broken furniture → Include photo if possible
+- Cleanliness issues → Specific area description
+
+### Reporting Steps:
+1. **Be Specific**: Exact location and issue description
+2. **Add Photos**: Visual evidence helps prioritize
+3. **Set Priority**: Urgent/High/Medium/Low
+4. **Follow Up**: Check status updates
+
+### Emergency Contacts:
+- **Security**: Campus emergency line
+- **IT Help**: Tech support desk
+- **Maintenance**: Facilities hotline
+
+Need help reporting a specific issue?`,
+
+    campus: `# 🏫 Campus Information
+
+## About: "${prompt}"
+
+### Quick Campus Guide:
+
+**📚 Academic Buildings:**
+- **Main Library**: 24/7 study zone, 3 floors
+- **Science Block**: Labs and lecture halls
+- **Engineering Block**: Workshops and computer labs
+
+**🍽️ Facilities:**
+- **Cafeteria**: 8 AM - 8 PM, multiple cuisines
+- **Student Center**: Events, clubs, and activities
+- **Sports Complex**: Gym, courts, and fields
+
+**🚌 Transportation:**
+- **Campus Bus**: Every 30 minutes, free for students
+- **Pickup Points**: Main gate, library, hostels
+- **City Bus**: Route numbers 42, 43, 44
+
+**🏥 Services:**
+- **Medical Center**: 9 AM - 6 PM, emergency care
+- **Counseling**: Mental health support
+- **Career Center**: Job placements and internships
+
+### Need specific directions or timings? Just ask!`,
+
+    default: `I'm here to help with CampusSync! 
+
+## What can I assist you with?
+
+### 🎯 Choose a topic:
+- **Study Help** - Schedules, planning, subject advice
+- **Lost & Found** - Report or find lost items  
+- **Campus Issues** - Report maintenance problems
+- **Campus Info** - Buildings, timings, directions
+- **General Support** - Any campus-related questions
+
+### 💡 Tips:
+- Be specific in your questions
+- Include relevant details (location, time, etc.)
+- I'll provide the most helpful response I can
+
+**What would you like to know about?**`
   };
 
-  // Get the path from the URL
-  const urlParts = req.url.split('/');
-  const path = urlParts[urlParts.length - 1] || 'default';
+  // Determine response based on prompt content
+  let response = responses.default;
   
-  // Handle specific paths
-  if (body.prompt && path === 'help-desk') {
-    // Generate contextual response based on the prompt
-    const prompt = body.prompt.toLowerCase();
-    if (prompt.includes('study') || prompt.includes('subjects') || prompt.includes('schedule')) {
-      return res.status(200).json({ text: fallbackResponses['study-planner'] });
-    } else if (prompt.includes('lost') || prompt.includes('found')) {
-      return res.status(200).json({ text: fallbackResponses['lost-found'] });
-    }
+  if (lowerPrompt.includes('hello') || lowerPrompt.includes('hi') || lowerPrompt.includes('hey')) {
+    response = responses.greeting;
+  } else if (lowerPrompt.includes('study') || lowerPrompt.includes('schedule') || lowerPrompt.includes('subjects') || lowerPrompt.includes('exam')) {
+    response = responses.study;
+  } else if (lowerPrompt.includes('lost') || lowerPrompt.includes('found') || lowerPrompt.includes('missing')) {
+    response = responses.lost;
+  } else if (lowerPrompt.includes('issue') || lowerPrompt.includes('problem') || lowerPrompt.includes('broken') || lowerPrompt.includes('report')) {
+    response = responses.issue;
+  } else if (lowerPrompt.includes('campus') || lowerPrompt.includes('building') || lowerPrompt.includes('library') || lowerPrompt.includes('where') || lowerPrompt.includes('location')) {
+    response = responses.campus;
+  } else if (lowerPrompt.includes('help') || lowerPrompt.includes('assist') || lowerPrompt.includes('support')) {
+    response = responses.greeting;
   }
-  
-  const response = fallbackResponses[path] || fallbackResponses['default'];
+
   res.status(200).json({ text: response });
 };
