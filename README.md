@@ -39,30 +39,28 @@ CampusSync addresses these challenges by providing a single AI-powered digital d
 ## MVP Snapshots
 > Below are snapshots of the working MVP of CampusSync.
 ### Dashboard
-![Dashboard](./public/screenshots/dashboard.png)
+<img width="960" height="498" alt="dashboard" src="https://github.com/user-attachments/assets/cfb991c5-b2b7-4909-b037-f770d7db0971" />
 
 ### Notices Module
-![Notices Page](./public/screenshots/notices.png)
+<img width="959" height="500" alt="notices" src="https://github.com/user-attachments/assets/62af0029-fc76-4272-bc5e-a6e1d71884e9" />
 
 ### Lost & Found Module
-![Lost & Found](./public/screenshots/lost-found.png)
+<img width="960" height="500" alt="lost-found" src="https://github.com/user-attachments/assets/ade0e81f-acc7-40d4-9354-e7f8a426d3e7" />
 
 ### Campus Issue Reporting
-![Issue Reporting](./public/screenshots/issues.png)
+<img width="960" height="499" alt="issues" src="https://github.com/user-attachments/assets/6750f6f0-b818-4a1c-b1a5-7f711f488faa" />
 
 ### AI Help Desk
-![AI Help Desk](./public/screenshots/ai-help.png)
 <img width="960" height="501" alt="ai-help" src="https://github.com/user-attachments/assets/514f4fda-5088-4c78-851d-8aa8e261cae5" />
 
-
 ### Campus Map
-![Campus Map](./public/screenshots/map.png)
+<img width="960" height="498" alt="map" src="https://github.com/user-attachments/assets/6f8c7fbb-55a6-4aac-9316-388a02e32652" />
 
 ### Study Planner
-![Study Planner](./public/screenshots/study-planner.png)
+<img width="960" height="506" alt="study-planner" src="https://github.com/user-attachments/assets/63854b51-c664-49b1-9f90-45bdb141e4eb" />
 
 ### Analytics Dashboard
-![Analytics Dashboard](./public/screenshots/analytics-dashboard.png)
+<img width="957" height="505" alt="analytics-dashboard" src="https://github.com/user-attachments/assets/279a6c2b-d30f-4ee0-926a-c7e6612d5e04" />
 
 ## Demo & Links
 - **Demo Video:** https://www.loom.com/share/e0f758e5c86f4fa990508f15ea28640c 
