@@ -52,6 +52,8 @@ CampusSync addresses these challenges by providing a single AI-powered digital d
 
 ### AI Help Desk
 ![AI Help Desk](./public/screenshots/ai-help.png)
+<img width="960" height="501" alt="ai-help" src="https://github.com/user-attachments/assets/514f4fda-5088-4c78-851d-8aa8e261cae5" />
+
 
 ### Campus Map
 ![Campus Map](./public/screenshots/map.png)
