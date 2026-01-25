@@ -12,7 +12,7 @@ CampusSync addresses these challenges by providing a single AI-powered digital d
 - AI-summarized and prioritized announcements  
 - Lost & Found management system  
 - Campus issue reporting and tracking  
-- AI-powered Campus Help Desk  
+- AI-powered Campus Help Desk and Raise Tickets
 - Smart campus map for navigation  
 - Study planner for academic organization
 - Analytics dashboard for faculty and admins to monitor notices, issues, and platform activity  
@@ -52,6 +52,9 @@ CampusSync addresses these challenges by providing a single AI-powered digital d
 
 ### AI Help Desk
 <img width="960" height="501" alt="ai-help" src="https://github.com/user-attachments/assets/514f4fda-5088-4c78-851d-8aa8e261cae5" />
+
+### Raise Tickets
+<img width="960" height="476" alt="image" src="https://github.com/user-attachments/assets/978ee47d-b522-41ee-a50d-7f86a9a7718f" />
 
 ### Campus Map
 <img width="960" height="498" alt="map" src="https://github.com/user-attachments/assets/6f8c7fbb-55a6-4aac-9316-388a02e32652" />
