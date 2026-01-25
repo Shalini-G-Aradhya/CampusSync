@@ -54,7 +54,7 @@ CampusSync addresses these challenges by providing a single AI-powered digital d
 <img width="960" height="501" alt="ai-help" src="https://github.com/user-attachments/assets/514f4fda-5088-4c78-851d-8aa8e261cae5" />
 
 ### Raise Tickets
-<img width="960" height="476" alt="image" src="https://github.com/user-attachments/assets/978ee47d-b522-41ee-a50d-7f86a9a7718f" />
+<img width="960" height="474" alt="image" src="https://github.com/user-attachments/assets/577b1378-1b26-4326-818d-70bfaca15027" />
 
 ### Campus Map
 <img width="960" height="498" alt="map" src="https://github.com/user-attachments/assets/6f8c7fbb-55a6-4aac-9316-388a02e32652" />
